@@ -1,0 +1,310 @@
+body { /* Styles specific to tournament page layout */
+    display: flex;
+    flex-direction: column; /* Make body a column flex container */
+    /* align-items: center; */ /* REMOVED to allow footer to span full width correctly */
+    margin: 0; /* Reset margin */
+    min-height: 100vh;
+    overflow-x: auto; /* Allow horizontal scrolling for large brackets */
+    /* background-color and color are set by .color_primary from style.css */
+    /* font-family is set by .jersey-10-regular from style.css */
+    /* Opacity and transition are handled by global body styles in style.css */
+}
+
+.navigation-button-container {
+    position: fixed; /* Oder 'absolute' je nach gewünschtem Scroll-Verhalten */
+    top: 20px;
+    left: 20px;
+    z-index: 100; /* Stellt sicher, dass der Button über anderen Elementen liegt */
+}
+
+.tournament-wrapper {
+    position: relative;
+    display: inline-block; /* Allows the wrapper to size to its content */
+    margin-top: 20px; /* Add some space at the top */
+    margin-left: auto; /* ADDED - Center the wrapper */
+    margin-right: auto; /* ADDED - Center the wrapper */
+    flex-grow: 1; /* Allow the tournament wrapper to take available vertical space */
+}
+
+.tournament-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* Behind matchups */
+    pointer-events: none; /* SVG doesn't intercept clicks */
+}
+
+.tournament-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Runden vertikal zueinander zentrieren */
+    position: relative;
+    z-index: 1; /* Above SVG */
+}
+.round {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Wichtig: Inhalt innerhalb der (jetzt höheren) Runde zentrieren */
+    margin-right: 70px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    min-width: 220px;
+    /* NEU: Eine Mindesthöhe, um die Runden vergleichbar zu machen */
+    min-height: 500px; /* PASSE DIESEN WERT Ggf. AN! */
+    box-sizing: border-box; /* Gut für den Fall, dass Padding/Border zur Höhe addiert werden */
+}
+
+.round:last-child {
+    margin-right: 0;
+}
+
+.round-title {
+    text-align: center;
+    font-weight: normal; /* Jersey 10 is already boldish */
+    font-size: 2em; /* Größer, passend zum Jersey Font */
+    color: var(--text-color);
+    margin-bottom: 25px;
+    min-height: 30px;
+    /* font-family: "Jersey 10", sans-serif; is applied via class */
+}
+
+/* Adjust title margin for rounds with single matchups to improve vertical alignment */
+.round:nth-child(3) .round-title,
+.round:nth-child(4) .round-title {
+    margin-bottom: 10px; /* Reduced from 25px */
+}
+
+.matchup {
+    /* background-color: var(--content-bg); is applied via color_secondary class */
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px; /* Abgerundete Ecken wie in event.html */
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2); /* Etwas mehr Schatten */
+    position: relative;
+    z-index: 2; /* Above SVG lines */
+    display: flex;
+    flex-direction: column;
+    /* color: var(--text-color); is inherited or set by participant */
+}
+
+/* Match completion and goal tracking styles */
+.match-completed {
+    opacity: 0.8;
+    background-color: rgba(150, 150, 150, 0.2);
+    border-color: var(--border-subtle);
+}
+
+.match-winner {
+    font-weight: bold;
+    color: var(--link-color);
+}
+
+.team-goals {
+    display: inline-block;
+    margin-left: 8px;
+    font-weight: bold;
+    color: var(--text-accent, #fff);
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+}
+
+/* Margins zwischen den Matchups */
+.round:nth-child(1) .matchup { margin-bottom: 30px; }
+.round:nth-child(2) .matchup { margin-bottom: 70px; }
+/* Das margin-bottom für die Final-Matchup-Box ist weniger kritisch */
+.round:nth-child(3) .matchup { margin-bottom: 0; } 
+.round:last-child .matchup { margin-bottom: 0; }
+
+#match-2-1 {
+    position: relative;
+    top: 40px; /* Adjust this value as needed */
+}
+
+.participant {
+    padding: 10px 15px; /* Adjusted padding */
+    font-size: 1.2em; /* Etwas größer für Lesbarkeit mit Jersey 10 */
+    color: var(--text-muted-color);
+    min-height: 45px; /* Höhe anpassen für bessere Lesbarkeit */
+    display: flex; 
+    align-items: center; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* font-family: "Jersey 10", sans-serif; is applied via class */
+    line-height: 1.2; /* Adjust line height for Jersey font */
+}
+
+.participant:first-of-type {
+    border-bottom: 1px dashed var(--border-subtle);
+}
+
+.participant[contenteditable="true"]:hover,
+.participant[contenteditable="true"]:focus {
+    background-color: var(--button-hover-bg); 
+    color: var(--button-hover-text);
+    outline: 1px solid var(--link-color);
+    white-space: normal; 
+}
+
+.placeholder {
+    color: var(--text-muted-color); 
+    opacity: 0.6; /* Slightly more transparent */
+    font-style: italic; /* Keep italic for placeholders */
+}
+
+/* School Indicators */
+.participant-tls {
+    border-left: 4px solid var(--link-color); /* Using a theme variable for TLS */
+    padding-left: 11px; /* Original 15px - 4px border */
+    box-sizing: border-box; /* Ensures padding is inside the content box after border is applied */
+}
+
+.participant-fvs {
+    border-left: 4px solid gold; /* Using gold for FVS */
+    padding-left: 11px; /* Original 15px - 4px border */
+    box-sizing: border-box; /* Ensures padding is inside the content box after border is applied */
+}
+
+.final-winner-box {
+   border: 2px solid var(--link-color); 
+   /* background-color: var(--content-bg); is applied via color_secondary class */
+}
+
+.final-winner-box .participant {
+  /* background-color: transparent; */ /* Can be set if a different bg is desired */
+  border: none;
+  font-size: 1.4em; /* Größer für den Gewinner */
+  font-weight: normal; /* Jersey 10 is already boldish */
+  color: var(--link-color); 
+  text-align: center;
+  justify-content: center; 
+}
+
+.final-winner-box .participant:first-of-type {
+  border-bottom: none;
+}
+
+/* Media Query for Mobile Devices */
+@media (max-width: 768px) {
+
+    .tournament-container {
+        flex-direction: column; /* Stack rounds vertically */
+        align-items: stretch; /* Stretch rounds to full width */
+    }
+
+    .round {
+        margin-right: 0; /* Remove right margin */
+        margin-bottom: 30px; /* Add bottom margin between rounds */
+        min-width: unset; /* Allow rounds to shrink */
+        width: 100%; /* Make rounds take full width */
+        min-height: auto; /* Adjust min-height for vertical layout */
+    }
+
+    .round:last-child {
+        margin-bottom: 0;
+    }
+
+    .round-title {
+        font-size: 1.8em; /* Slightly smaller title for mobile */
+        margin-bottom: 15px;
+    }
+
+    /* Adjust matchup margins for vertical layout */
+    .round:nth-child(1) .matchup,
+    .round:nth-child(2) .matchup,
+    .round:nth-child(3) .matchup {
+        margin-bottom: 20px;
+    }
+    
+    #match-2-1 {
+        top: 0; /* Reset the manual top adjustment for mobile */
+    }
+
+    .participant {
+        font-size: 1em; /* Adjust participant font size */
+        min-height: 40px;
+        padding: 8px 12px;
+    }
+
+    .navigation-button-container {
+        position: relative; /* Change to relative for in-flow positioning */
+        top: auto;
+        left: auto;
+        width: 100%;
+        text-align: center; /* Center the button */
+        margin-bottom: 20px; /* Add some space below the button */
+    }
+}
+
+.footer-container, /* Apply shared styles */
+.footer-enhanced { /* Specific or override styles for turnier.html footer */
+    width: 100%; /* Make footer take full width */
+    text-align: center;
+    padding: 20px 0; /* Adjusted padding to be consistent with event.html */
+    margin-top: auto; /* Push footer to the bottom */
+    background-color: var(--content-bg); /* Ensure it has a background like other footers */
+    color: var(--text-muted-color); /* Use text-muted-color for consistency */
+    font-size: 0.9em; /* Consistent font size */
+}
+
+/* Ensure the body allows the footer to be pushed to the bottom */
+body.color_primary.jersey-10-regular {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Light mode specific styles for tournament elements */
+/* body.light-mode .round-title {
+    color: var(--color-main1);
+}
+
+body.light-mode .participant {
+    background-color: var(--color-secondary);
+    color: var(--color-text);
+    border: 1px solid var(--color-grey);
+}
+body.light-mode .participant.placeholder {
+    color: var(--color-dark-grey);
+    background-color: var(--color-light-grey);
+}
+
+body.light-mode .matchup {
+    background-color: var(--color-primary);
+    border: 1px solid var(--color-grey);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+body.light-mode .participant:first-of-type {
+    border-bottom: 1px solid var(--color-grey);
+}
+
+body.light-mode .participant[contenteditable="true"]:hover,
+body.light-mode .participant[contenteditable="true"]:focus {
+    background-color: var(--color-accent-light); 
+    outline: 2px solid var(--color-accent);
+}
+
+
+body.light-mode .final-winner-box {
+    background-color: var(--color-accent);
+    border: 2px solid var(--color-main1);
+}
+body.light-mode .final-winner-box .participant {
+    color: var(--color-white);
+    font-weight: bold;
+}
+
+body.light-mode .tournament-svg line {
+    stroke: var(--color-main2);
+} */
+
+/* Dark mode for SVG lines if not in light mode */
+body:not(.light-mode) .tournament-svg line {
+    stroke: var(--text-color);
+}

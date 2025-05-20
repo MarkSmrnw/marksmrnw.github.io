@@ -1,0 +1,47 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+#page-banner {
+    background-color: #f0f0f0; /* Beispiel Banner Hintergrund */
+    padding: 50px 20px;
+    text-align: center;
+}
+
+#sticky-navbar {
+    background-color: #333; /* Dunkler Hintergrund für die Navbar */
+    position: sticky;
+    top: 0; /* Bleibt am oberen Rand des Viewports haften */
+    z-index: 1000; /* Stellt sicher, dass die Navbar über anderen Elementen liegt */
+    width: 100%;
+}
+
+#sticky-navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex; /* Ordnet die Listenelemente horizontal an */
+    justify-content: center; /* Zentriert die Links in der Navbar */
+}
+
+#sticky-navbar ul li {
+    /* Kein spezifisches Styling hier notwendig, wenn display: flex auf ul angewendet wird */
+}
+
+#sticky-navbar ul li a {
+    display: block;
+    color: white; /* Weiße Schriftfarbe für die Links */
+    text-align: center;
+    padding: 14px 20px; /* Innenabstand für Klickfläche */
+    text-decoration: none; /* Entfernt Unterstreichung der Links */
+}
+
+#sticky-navbar ul li a:hover {
+    background-color: #555; /* Hintergrundfarbe beim Hovern */
+}
+
+/* Beispiel für den Hauptinhalt, um Platz zu schaffen */
+main {
+    padding-top: 20px; /* Etwas Abstand nach der Navbar, falls nötig */
+}

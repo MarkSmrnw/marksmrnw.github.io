@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Freiherr von Stein & Theodor-Litt-Schule | Rocket League Event | Dashboard</title>
+    <link rel="stylesheet" href="src/css/style.css">
+    <link rel="stylesheet" href="src/css/dropdown.css">
+    <link rel="stylesheet" href="src/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+</head>
+
+<body class="color_primary content-hidden">
+
+<header class="position-relative color_primary">
+    <div class="col-12">
+        <video src="./src/media/video/bannerRL_C.webm" class="w-100" id="bannerVid" autoplay loop muted></video>
+    </div>
+
+    <div class="position-absolute top-50 start-50 translate-middle">
+        <div id="HEADER_imagehandler">
+            <img src="./src/media/image/rllogo.png" alt="Rocket League Logo, black and white." class="w-100">
+        </div>
+    </div>
+</header>
+
+<nav id="event-navbar">
+        <ul>
+            <li><a href="event.html">Home</a></li>
+            <li><a href="turnier.html">Turnierbaum</a></li>
+            <li><a href="#teamsSection">Teams</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle">Weiteres</a>
+                <div class="dropdown-content">
+                    <a href="impressum.html">Impressum</a>
+                    <a href="datenschutz.html">Datenschutz</a>
+                    <a href="rocketleague.html">Über Rocket Leauge</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <div id="pageTransitionOverlay"></div>
+
+    <div class="container"> <!-- CONTAINER START -->
+        <div class="row page-intro-headings">
+            <span class="jersey-10-regular page-intro-line1">
+                Jetzt wird geprüft:
+            </span>
+            <span class="jersey-10-regular page-intro-line2">
+                Welche Schule ist besser?
+            </span>
+        </div>
+        <div class="row color_secondary justify-content-center" id="schulvergleichBox">
+            <span class="jersey-10-regular schulvergleich-title">
+                Schule gg. Schule
+            </span>
+
+            <div class="d-flex justify-content-center align-items-center mt-2">
+                <div id="tlsLogo" class="diamond">
+                    <img src="./src/media/image/tlsLogoNoText.png" alt="TLSLOGO" class="tls_fill">
+                </div>
+
+                <span class="vsBlock jersey-10-regular">
+                    vs.
+                </span>                <div id="fvssLogo" class="square">
+                    <img src="src/media/image/fvssLogo.png" alt="FVSS Logo" style="max-width: 100%; height: auto;">
+                </div>
+            </div>
+
+            <!-- SCHOOL HIGHLIGHT MODAL-->
+            <div id="schoolInfoWindow">
+                <h4 id="schoolInfoWindowHeading">Schulinfo</h4>
+                <p id="schoolInfoWindowText">Hier stehen die Informationen zur Schule.</p>
+                <button id="closeInfoWindowButton">Schließen</button>
+            </div>
+
+        </div>
+        <!-- Erklärung u. Countdown-->
+        <div class="row color_secondary justify-content-center mt-2" id="turnierInfos">
+            <div class="col-12 mb-4">
+                <h2 class="text-center jersey-10-regular section-title">Das Turnier.</h2>
+            </div>
+            <div class="col-md-6">
+                <h3 class="jersey-10-regular column-title">Warum?</h3>
+                <ul class="list-unstyled jersey-10-regular info-text">
+                    <li>TEMP TEXT TEMP TEXT</li>
+                    <li>TEMP TEXT TEMP TEXT</li>
+                    <li>TEMP TEXT TEMP TEXT</li>
+                    <li>TEMP TEXT TEMP TEXT</li>
+                    <li>TEMP TEXT TEMP TEXT</li>
+                    
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h3 class="jersey-10-regular column-title">Wann?</h3>
+                <div class="countdown-box jersey-10-regular" id="countdownContainer">
+                    <span class="countdown-part months"><span class="value" id="cdMonths">--</span><span class="label">MONATE</span></span>
+                    <span class="separator">:</span>
+                    <span class="countdown-part days"><span class="value" id="cdDays">--</span><span class="label">TAGE</span></span>
+                    <span class="separator">:</span>
+                    <span class="countdown-part hours"><span class="value" id="cdHours">--</span><span class="label">STDN</span></span>
+                    <span class="separator">:</span>
+                    <span class="countdown-part minutes"><span class="value" id="cdMinutes">--</span><span class="label">MIN</span></span>
+                    <span class="separator">:</span>
+                    <span class="countdown-part seconds"><span class="value" id="cdSeconds">--</span><span class="label">SEK</span></span>
+                </div>
+            </div>
+        </div> <!-- Ende von #turnierInfos -->
+
+        <!-- Die Teams Section START -->
+        <div class="row color_secondary justify-content-center mt-4" id="teamsSection">
+            <div class="col-12 mb-4">
+                <h2 class="text-center jersey-10-regular section-title">Die Teams</h2>
+            </div>
+
+            <!-- TLS Teams Container -->
+            <div class="col-12 team-row-container" data-school-id="TLS">
+                <h3 class="jersey-10-regular team-label">TLS</h3>
+                <div class="shapes-row">
+                    <!-- Team-Platzhalter werden hier von JavaScript generiert -->
+                </div>
+            </div>
+
+            <!-- FvS Teams Container -->
+            <div class="col-12 team-row-container mt-4" data-school-id="FVS">
+                <h3 class="jersey-10-regular team-label">FVSS</h3>
+                <div class="shapes-row">
+                    <!-- Team-Platzhalter werden hier von JavaScript generiert -->
+                </div>
+            </div>
+            <!-- Füge hier bei Bedarf Container für weitere Schulen hinzu, mit entsprechendem data-school-id -->
+        </div>
+        <!-- Die Teams Section END -->
+
+    </div> <!-- CONTAINER END -->
+
+    <!-- Team Info Modal START -->
+    <div id="teamInfoModal" class="custom-modal">
+        <div class="custom-modal-content">
+            <button id="closeTeamModalButton" class="custom-modal-close-button">&times;</button>
+            <h3 id="teamModalName" class="jersey-10-regular">Team Name</h3>
+            <div id="teamModalImageContainer">
+                <img src="" alt="Team Logo" id="teamModalImage">
+            </div>
+            <p id="teamModalDescription">Team Beschreibung hier...</p>
+        </div>
+    </div>
+    <!-- Team Info Modal END -->    <!-- Footer Placeholder - Will be populated by footer-loader.js -->
+    <div id="footer-placeholder"></div>
+
+    <script src="src/js/bannerHandler.js"></script>
+    <script src="src/js/script.js"></script>
+    <script src="src/js/transitions.js" defer></script>
+    <script src="src/js/footer-loader.js" defer></script>
+</body>
+
+</html>

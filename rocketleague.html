@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rocket League</title>
+<link rel="stylesheet" href="src/css/style.css">
+<link rel="stylesheet" href="src/css/dropdown.css">
+<link rel="stylesheet" href="src/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+<style>    .game-image {
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        margin-bottom: 10px; /* Reduced margin */
+        max-width: 100%;
+        height: auto;
+        transition: transform 0.3s ease;
+        object-fit: contain; /* Ensures image maintains its aspect ratio */
+    }
+      /* Spezifische Bildgrößenbeschränkungen */
+    .logo-image {
+        max-width: 80%;
+        max-height: 180px; /* Reduced from 200px */
+        margin: 0 auto;
+        display: block;
+    }
+    
+    .car-image {
+        max-width: 100%;
+        max-height: 220px; /* Reduced from 250px */
+        object-fit: cover;
+    }
+    
+    .game-image:hover {
+        transform: scale(1.02);
+    }
+      .feature-card {
+        background-color: var(--content-bg);
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 15px; /* Reduced from 20px */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        height: 100%;  /* Die Karte nimmt die volle Höhe des Eltern-Elements ein */
+        display: flex;
+        flex-direction: column;
+    }
+      .content-row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 15px; /* Added margin bottom for better spacing */
+    }
+    
+    .content-row > div {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px; /* Reduced from 20px */
+    }
+      .image-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        min-height: 250px;  /* Weiter reduzierte Mindesthöhe */
+        max-height: 300px;  /* Reduzierte maximale Höhe */
+        padding: 12px;      /* Noch weiter reduziertes Padding */
+        background-color: var(--content-bg);
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        overflow: hidden;   /* Verhindert Überlauf von Inhalten */
+        margin-bottom: 0;   /* Entfernt unteren Abstand */
+    }
+    
+    .banner-container {
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+        margin-bottom: 30px;
+    }
+    
+    .banner-image {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+    
+    .banner-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.7));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+      .banner-text {
+        color: white;
+        text-align: center;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    }
+      /* Banner-Textgrößen anpassen */
+    .banner-text h1 {
+        margin-bottom: 0;
+        text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+    }
+    
+    .banner-text .lead {
+        font-size: 1.3rem;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.9);
+    }
+      /* Feature-Boxen für "Warum Rocket League" Sektion */
+    .feature-item {
+        padding: 15px;
+        background-color: rgba(0,0,0,0.1);
+        border-radius: 8px;
+        height: 100%;
+        transition: transform 0.2s, box-shadow 0.2s;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .feature-item h4 {
+        margin-bottom: 10px;
+        font-size: 1.3rem;
+    }
+    
+    .feature-item p {
+        text-align: center;
+        margin-bottom: 0;
+    }
+    
+    .feature-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        background-color: rgba(0,0,0,0.15);
+    }
+      /* Mobile Optimierungen */
+    @media (max-width: 767px) {
+        .banner-container {
+            margin-bottom: 20px;
+        }
+        
+        .banner-text h1 {
+            font-size: 2.8rem !important; /* Noch kleinere Überschrift auf Mobilgeräten */
+        }
+        
+        .banner-text .lead {
+            font-size: 1.1rem; /* Kleinerer Untertitel auf Mobilgeräten */
+        }
+        
+        .content-row {
+            flex-direction: column-reverse; /* Bild oben, Text unten auf Mobilgeräten */
+        }
+        
+        .content-row:nth-child(odd) {
+            flex-direction: column; /* Bei ungeraden Reihen normaler Fluss */
+        }
+        
+        .image-container {
+            min-height: 180px; /* Weitere Reduzierung der Mindesthöhe auf Mobilgeräten */
+            max-height: 220px; /* Reduzierte maximale Höhe auf Mobilgeräten */
+            margin-bottom: 15px;
+            padding: 10px; /* Reduziertes Padding für Mobilgeräte */
+        }
+        
+        .feature-card {
+            margin-bottom: 15px;
+            padding: 15px; /* Reduziertes Padding für Mobilgeräte */
+        }
+        
+        .logo-image {
+            max-height: 140px; /* Kleineres Logo auf Mobilgeräten */
+        }
+        
+        .car-image {
+            max-height: 160px; /* Kleinere Fahrzeug-Bilder auf Mobilgeräten */
+        }
+        
+        .feature-item {
+            padding: 12px; /* Reduziertes Padding für Feature-Items */
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            font-size: 1.8rem; /* Kleinere Überschriften auf Mobilgeräten */
+        }
+        
+        h3 {
+            font-size: 1.4rem; /* Kleinere Unterüberschriften auf Mobilgeräten */
+        }
+    }
+    
+    /* Zusätzliche Optimierungen für sehr kleine Bildschirme */
+    @media (max-width: 480px) {
+        .banner-text h1 {
+            font-size: 2.5rem !important;
+        }
+        
+        .banner-text .lead {
+            font-size: 1rem;
+        }
+        
+        .image-container {
+            min-height: 160px;
+            max-height: 200px;
+        }
+    }
+</style>
+</head>
+<body class="color_primary jersey-10-regular content-hidden">
+    <nav id="event-navbar">
+        <ul>
+            <li><a href="event.html">Home</a></li>
+            <li><a href="#">Über Rocket League</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle">Weiteres</a>
+                <div class="dropdown-content">
+                    <a href="impressum.html">Impressum</a>
+                    <a href="datenschutz.html">Datenschutz</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <div id="pageTransitionOverlay"></div>
+    
+    <!-- Banner Sektion -->
+    <div class="container mt-3">
+        <div class="banner-container">
+            <img src="src/media/image/rl_banner.jpg" alt="Rocket League Banner" class="banner-image">
+            <div class="banner-overlay">
+                <div class="banner-text">
+                    <h1 class="jersey-10-regular" style="font-size: 4.5rem;">Rocket League</h1>
+                    <p class="lead">Autos, Fußball, Action!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+      <div class="container">
+        <!-- Einführung -->
+        <div class="row content-row">
+            <div class="col-md-7">
+                <div class="feature-card">
+                    <h2 class="jersey-10-regular">Was ist Rocket League?</h2>
+                    <p class="mt-3">
+                        Rocket League ist ein aufregendes Spiel, bei dem Fußball auf Autoracing trifft! 
+                        Du steuerst ein raketenbetriebenes Auto und versuchst, einen überdimensionalen 
+                        Ball ins gegnerische Tor zu schießen.
+                    </p>
+                    <p>
+                        Der Mix aus Geschwindigkeit, Präzision und Teamarbeit macht Rocket League 
+                        zu einem der beliebtesten E-Sport-Titel weltweit.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="image-container">
+                    <img src="src/media/image/rl_logo.png" alt="Rocket League Logo" class="game-image logo-image">
+                </div>
+            </div>
+        </div>        <!-- Fahrzeuge und Gameplay -->
+        <div class="row content-row mt-4">
+            <div class="col-md-5">
+                <div class="image-container">
+                    <img src="src/media/image/rl_carshowcase.jpg" alt="Rocket League Autos" class="game-image car-image">
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="feature-card">
+                    <h2 class="jersey-10-regular">Wie funktioniert das Spiel?</h2>
+                    <p class="mt-3">
+                        In Rocket League kannst du aus über 70 verschiedenen Fahrzeugen wählen und diese 
+                        individuell anpassen. Jedes Auto kann springen, boosten und sogar an Wänden fahren!
+                    </p>
+                    <h3 class="jersey-10-regular mt-3">Die wichtigsten Steuerungselemente:</h3>
+                    <ul>
+                        <li>Springe und führe Saltos in der Luft aus, um den Ball zu treffen</li>
+                        <li>Sammle Boost, um schneller zu fahren und in die Luft zu fliegen</li>
+                        <li>Fahre an Wänden und der Decke der Arena</li>
+                        <li>Führe spektakuläre Tricks aus, um den Ball präzise zu spielen</li>
+                    </ul>
+                </div>
+            </div>        </div>
+        
+        <!-- Spielregeln -->
+        <div class="row content-row mt-4">
+            <div class="col-md-7">
+                <div class="feature-card">
+                    <h2 class="jersey-10-regular">Die Spielregeln</h2>
+                    <p class="mt-3">
+                        Rocket League ist einfach zu verstehen, aber schwer zu meistern. Die Grundregeln:
+                    </p>
+                    <ul>
+                        <li>Spiele in Teams von 1 bis 4 Spielern (meistens 3 gegen 3)</li>
+                        <li>Ein Spiel dauert 5 Minuten (plus Verlängerung bei Gleichstand)</li>
+                        <li>Schieße den Ball ins gegnerische Tor, um Punkte zu erzielen</li>
+                        <li>Das Team mit den meisten Toren gewinnt</li>
+                    </ul>
+                    <p class="mt-3">
+                        Im Schulturnier spielen wir im 3v3-Format, sodass jedes Team drei Spieler hat. 
+                        Das fördert Teamarbeit und sorgt für spannende Matches!
+                    </p>                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="image-container">
+                    <img src="src/media/image/rl_goalexplosion.jpg" alt="Rocket League Torexplosion" class="game-image">
+                </div>
+            </div>
+        </div>
+          <!-- Unser Turnier -->
+        <div class="row mt-4 mb-5">
+            <div class="col-12">
+                <div class="feature-card">
+                    <h2 class="jersey-10-regular text-center">Warum Rocket League für unser Schulturnier?</h2>
+                    <div class="row mt-4 feature-boxes">
+                        <div class="col-md-4 col-sm-12 mb-3">
+                            <div class="text-center feature-item">
+                                <h4 class="jersey-10-regular">Für alle geeignet</h4>
+                                <p>Leicht zu lernen, macht sofort Spaß und ist für Spieler aller Erfahrungsstufen geeignet.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12 mb-3">
+                            <div class="text-center feature-item">
+                                <h4 class="jersey-10-regular">Teamwork</h4>
+                                <p>Fördert Zusammenarbeit, Kommunikation und strategisches Denken im Team.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12 mb-3">
+                            <div class="text-center feature-item">
+                                <h4 class="jersey-10-regular">Spannung pur</h4>
+                                <p>Kurze, intensive Matches mit spektakulären Spielzügen und Wendungen bis zur letzten Sekunde.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-4">
+                        <a href="turnier.html" class="btn btn-primary">Zum Turnierbaum</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer Placeholder - Will be populated by footer-loader.js -->
+    <div id="footer-placeholder"></div>
+
+    <script src="src/js/bannerHandler.js"></script>
+    <script src="src/js/transitions.js" defer></script>
+    <script src="src/js/footer-loader.js" defer></script>
+</body>
+</html>

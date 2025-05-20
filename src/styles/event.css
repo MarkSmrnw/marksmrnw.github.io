@@ -1,0 +1,21 @@
+/* Beispiel CSS für die Zentrierung des "vs."-Textes in event.html */
+
+.logos-mit-vs {
+  display: flex; /* Aktiviert Flexbox */
+  align-items: center; /* Zentriert die Elemente vertikal in der Zeile */
+  justify-content: center; /* Zentriert die Gruppe der Elemente horizontal, falls der Container breiter ist */
+  gap: 15px; /* Definiert einen Abstand zwischen den Flex-Elementen (Logo, vs-Text, Logo) */
+}
+
+.vs-text-mitte {
+  /* Der Div mit dem "vs."-Text wird durch Flexbox zwischen den Logos positioniert. */
+  /* Sie können hier weitere Stile hinzufügen, z.B. Schriftgröße, -gewicht, Farbe */
+  font-size: 1.2em; /* Beispiel Schriftgröße */
+  font-weight: bold; /* Beispiel Schriftgewicht */
+}
+
+.schule-logo {
+  /* Beispielstile für die Logos, passen Sie diese nach Bedarf an */
+  max-width: 80px; /* Maximale Breite des Logos */
+  height: auto; /* Höhe automatisch anpassen, um Proportionen beizubehalten */
+}

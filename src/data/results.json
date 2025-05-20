@@ -1,0 +1,99 @@
+{
+  "rounds": [
+    {
+      "round_name": "Round 1",
+      "matches": [
+        {
+          "match_id": "M101",
+          "team1": "Arising Shadows",
+          "team2": "FvSS-TEAM",
+          "winner": "Arising Shadows",
+          "team1_goals": 10,
+          "team2_goals": 2
+        },
+        {
+          "match_id": "M102",
+          "team1": "Theodor is Litt",
+          "team2": "Steinadler",
+          "winner": "Steinadler",
+          "team1_goals": -10,
+          "team2_goals": 9999
+        },
+        {
+          "match_id": "M103",
+          "team1": "TLS-TEAM",
+          "team2": "FvSS-TEAM",
+          "winner": "TBD",
+          "team1_goals": 0,
+          "team2_goals": 0
+        },
+        {
+          "match_id": "M104",
+          "team1": "Nebelkicker",
+          "team2": "Titanen",
+          "winner": "TBD",
+          "team1_goals": 0,
+          "team2_goals": 0
+        }
+      ]
+    },
+
+
+
+    {
+      "round_name": "Quarterfinals",
+      "matches": [
+        {
+          "match_id": "MQF1",
+          "team1": "Arising Shadows",
+          "team2": "Steinadler",
+          "winner": "TBD",
+          "team1_goals": 0,
+          "team2_goals": 0
+        },
+        {
+          "match_id": "MQF2",
+          "team1": "TBD",
+          "team2": "TBD",
+          "winner": "TBD",
+          "team1_goals": 0,
+          "team2_goals": 0
+        }
+      ]
+    },
+
+
+
+
+    {
+      "round_name": "Semifinals",
+      "matches": [
+        {
+          "match_id": "MSF1",
+          "team1": "TBD",
+          "team2": "TBD",
+          "winner": "TBD",
+          "team1_goals": 0,
+          "team2_goals": 0
+        }
+      ]
+    },
+
+
+
+    
+    {
+      "round_name": "Finals",
+      "matches": [
+        {
+          "match_id": "MF1",
+          "team1": "TBD",
+          "team2": "TBD",
+          "winner": "Mark :D",
+          "team1_goals": 0,
+          "team2_goals": 0
+        }
+      ]
+    }
+  ]
+}

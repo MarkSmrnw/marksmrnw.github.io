@@ -1,0 +1,864 @@
+:root { /* Default: Dark Mode */
+    --body-bg: #282020;
+    --content-bg: #362C2C;
+    --text-color: #ffffff;
+    --text-muted-color: #e0e0e0;
+    --header-text-color: #000000;
+    --header-text-shadow-color: #ffffff;
+    --link-color: #87CEFA;
+    --button-bg: var(--text-color);
+    --button-text: var(--body-bg);
+    --button-hover-bg: var(--text-muted-color);
+    --button-hover-text: var(--body-bg);
+    --border-strong: #282020;
+    --border-subtle: #4a4a5a;
+    --countdown-value-color: var(--text-color);
+    --countdown-label-color: #b0b0b0;
+    --team-shape-placeholder-bg: #D3D3D3;
+    --team-name-on-shape-bg: rgba(40, 32, 32, 0.75);
+    --team-name-on-shape-text: #FFFFFF;
+    --modal-content-bg: #362C2C;
+    --modal-border-color: #282020;
+    --modal-close-btn-color: #aaa;
+    --modal-close-btn-hover-color: var(--text-color);
+    --schulvergleich-logo-bg: white;
+    --event-ended-message-color: var(--text-color); /* Default to main text color */
+}
+
+html, body {
+    /* height: 100%; */ /* Removed height from here */
+    margin: 0;
+    padding: 0; /* Added padding: 0 for consistency */
+    /* display: flex; Removed to allow sticky positioning to work correctly */
+    /* flex-direction: column; Removed to allow sticky positioning to work correctly */
+    overflow-x: initial; /* Ensure no hidden overflow horizontally */
+}
+
+body{
+    min-height: 100vh; /* Added min-height */
+    display: block; /* Explicitly set display to block */
+    /* flex: 1; Removed to allow sticky positioning to work correctly */
+    /* overflow-x: hidden; */ /* Ensured this is not active */
+    overflow-y: auto; /* Allow vertical scrolling */
+    background: var(--body-bg); /* MODIFIED */
+    opacity: 1; /* Default opacity */
+    transition: opacity 0.4s ease-in-out; /* Body fade transition */
+}
+
+/* Event Navigation Bar Styles */
+#event-navbar {
+    background-color: var(--content-bg); /* Verwendet den Hintergrund der sekundären Farbe */
+    position: sticky;
+    top: 0;
+    z-index: 1020; /* Stellt sicher, dass sie über den meisten Inhalten, aber unter Modals liegt */
+    width: 100%;
+    padding: 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Leichter Schatten für Tiefe */
+}
+
+#event-navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Zentriert die Links */
+}
+
+#event-navbar ul li a {
+    display: block;
+    color: var(--text-color); /* Verwendet die Textfarbe des Themes */
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    font-family: 'Jersey 10', sans-serif; /* Passende Schriftart */
+    font-size: 1.2em; /* Anpassbare Schriftgröße */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#event-navbar ul li a:hover {
+    background-color: var(--body-bg); /* Hintergrund beim Hovern */
+    color: var(--text-color); /* Textfarbe beim Hovern */
+}
+
+body.content-hidden {
+    opacity: 0;
+}
+
+/* Page Transition Overlay */
+#pageTransitionOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--body-bg); /* Use body background or a distinct color */
+    z-index: 9999; /* Highest z-index */
+    transform: translateY(0%); /* Starts covering the screen */
+    transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1); /* Smooth slide animation */
+    pointer-events: auto; /* Blocks interaction when visible */
+}
+
+#pageTransitionOverlay.slide-out {
+    transform: translateY(-100%); /* Slides out upwards */
+    pointer-events: none; /* Allows interaction with page content when hidden */
+}
+
+.color_primary{
+    background-color: var(--body-bg); /* MODIFIED */
+    color: var(--text-color); /* MODIFIED */
+}
+
+.color_secondary{
+    background-color: var(--content-bg); /* MODIFIED */
+    color: var(--text-color); /* MODIFIED */
+}
+
+.jersey-10-regular {
+    font-family: "Jersey 10", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+#header-title{
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+}
+
+#header-title > *{
+    margin: auto;
+    color: var(--header-text-color); /* MODIFIED */
+    font-size: clamp(.7em, 2vw, 1.5em);
+    transform: translateY(100%);
+    text-shadow: /* MODIFIED */
+            .5px .5px 0 var(--header-text-shadow-color),
+            -.5px -.5px 0 var(--header-text-shadow-color),
+            .5px -.5px 0 var(--header-text-shadow-color),
+            -.5px .5px 0 var(--header-text-shadow-color);
+}
+
+footer{
+    position: relative; /* Entferne absolute Positionierung */
+    width: 100%;
+    text-align: center;
+    padding: 20px 0; /* Added padding */
+    margin-top: 30px; /* Added margin-top */
+    color: var(--text-muted-color);
+    font-size: 0.9em;
+}
+
+.footer-enhanced {
+    background-color: var(--content-bg); /* Ensure consistent background */
+    color: var(--text-muted-color); /* Softer text color for footer */
+    padding-top: 30px;
+    padding-bottom: 20px;
+    padding: 40px 0;
+    background-color: var(--content-bg); /* Slightly different background for distinction */
+    color: var(--text-muted-color);
+    font-size: 0.9em;
+}
+
+.footer-col {
+    margin-bottom: 20px;
+    text-align: left; /* Align text to the left within columns */
+}
+
+.footer-col h5 {
+    color: var(--text-color);
+    margin-bottom: 15px;
+    font-family: 'Jersey 10', sans-serif;
+    font-size: 1.5em;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 8px;
+}
+
+.footer-col ul li a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-col ul li a:hover {
+    color: var(--text-color);
+    text-decoration: underline;
+}
+
+.footer-col p,
+.footer-col address {
+    margin-bottom: 0;
+    line-height: 1.6;
+    /* Ensure address lines up with the heading by removing default browser margins/paddings if any */
+    padding-left: 0; /* Explicitly set for address if needed */
+    margin-left: 0; /* Explicitly set for address if needed */
+}
+
+.footer-col address strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.footer-col p a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+.footer-col p a:hover {
+    color: var(--text-color);
+    text-decoration: underline;
+}
+
+.footer-copyright p {
+    margin-top: 20px;
+    font-size: 0.8em;
+    color: var(--text-muted-color);
+    margin-bottom: 10px;
+    font-size: 0.85em;
+}
+
+footer p{
+    margin: auto;
+    width: max-content;
+}
+
+.square{
+    aspect-ratio: 1;
+    height: 100px;
+    width: 100px; /* Added explicit width to prevent stretching */
+    background-color: var(--schulvergleich-logo-bg); /* MODIFIED */
+    display: flex;
+    border-radius: 25px;
+}
+.diamond{
+    aspect-ratio: 1;
+    height: 95px;
+    background-color: var(--schulvergleich-logo-bg); /* MODIFIED */
+    display: flex;
+    border-radius: 25px;
+
+    transform: rotateZ(45deg);
+}
+
+.tls_fill{
+    transform: rotateZ(-45deg) translate(-5%, -5%);
+    height: 120%;
+    align-self: center;
+}
+
+.vsBlock{
+    display: flex;
+    width: 50px;
+    height: 50px;
+
+    justify-content: center;
+    font-size: xx-large;
+
+    margin-top: 5%;
+
+    transform: rotateZ(-10deg);
+}
+
+#schoolInfoWindow {
+    display: none; 
+    position: absolute; 
+    background-color: var(--modal-content-bg); /* MODIFIED */
+    color: var(--text-color); /* MODIFIED */
+    border: 2px solid var(--modal-border-color); /* MODIFIED */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    min-width: 240px;
+    max-width: 300px;
+    font-family: 'Jersey 10', sans-serif;
+    letter-spacing: 0.5px;
+
+    /* Animations-Eigenschaften */
+    opacity: 0;
+    transform: scale(0.95) translateY(10px); /* Startet leicht verkleinert und nach unten verschoben */
+    transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+    pointer-events: none; /* Nicht interaktiv im versteckten Zustand */
+}
+
+#schoolInfoWindow.visible {
+    opacity: 1;
+    transform: scale(1) translateY(0); /* Endzustand: normale Größe und Position */
+    pointer-events: auto; /* Interaktiv im sichtbaren Zustand */
+}
+
+#schoolInfoWindow h4 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--text-color); /* MODIFIED */
+    font-size: 1.8em;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+    padding-bottom: 10px; 
+    border-bottom: 1px solid var(--border-subtle); /* MODIFIED */
+}
+
+#schoolInfoWindow p {
+    margin-bottom: 15px; 
+    font-size: 1.1em;
+    line-height: 1.6;
+    text-align: left;
+    color: var(--text-muted-color); /* MODIFIED */
+}
+
+#schoolInfoWindow p strong { 
+    color: var(--text-color); /* MODIFIED */
+}
+
+#schoolInfoWindow p a { 
+    color: var(--link-color); /* MODIFIED */
+    text-decoration: none;
+}
+
+#schoolInfoWindow p a:hover {
+    text-decoration: underline;
+}
+
+#schoolInfoWindow button {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    background-color: var(--button-bg); /* MODIFIED */
+    color: var(--button-text); /* MODIFIED */
+    border: 1px solid var(--border-strong); /* MODIFIED */
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Jersey 10', sans-serif;
+    font-size: 1.2em;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.1s ease;
+}
+
+#schoolInfoWindow button:hover {
+    background-color: var(--button-hover-bg); /* MODIFIED */
+    color: var(--button-hover-text); /* MODIFIED */
+    transform: translateY(-2px);
+}
+
+#schoolInfoWindow button:active {
+    transform: translateY(0px);
+}
+
+#turnierInfos {
+    border-radius: 20px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative; /* Falls benötigt für interne absolut positionierte Elemente */
+    padding: 40px 20px; /* Kürzere Schreibweise für oben/unten und links/rechts */
+    /* justify-content-center ist bereits als Bootstrap-Klasse vorhanden */
+}
+
+#turnierInfos .section-title {
+    font-size: 2.8em; 
+    color: var(--text-color); /* MODIFIED */
+    margin-bottom: 30px; 
+    text-transform: uppercase; /* Optional, falls gewünscht */
+}
+
+#turnierInfos .column-title {
+    font-size: 2em; 
+    color: var(--text-color); /* MODIFIED */
+    margin-bottom: 20px;
+    text-align: center; /* Zentriert die Spaltenüberschriften */
+}
+
+#turnierInfos .info-text {
+    font-size: 1.3em; 
+    color: var(--text-muted-color); /* MODIFIED */
+    line-height: 1.8;
+    text-align: center; /* Zentriert die Listenelemente */
+}
+
+#turnierInfos .info-text li {
+    margin-bottom: 8px; 
+    /* Die text-align: center Eigenschaft vom Elternelement .info-text wirkt hier */
+}
+
+.countdown-box {
+    background-color: var(--border-strong); /* MODIFIED - using border-strong for a slightly different shade */
+    color: var(--text-color); /* MODIFIED */
+    padding: 20px 15px; 
+    border-radius: 15px;
+    text-align: center; 
+    font-size: 1.3em; 
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+    min-height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; 
+    flex-wrap: wrap; 
+}
+
+.countdown-part {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    margin: 0 3px; 
+    min-width: 45px; 
+}
+
+.countdown-part .value {
+    font-size: 1.8em; 
+    line-height: 1.1;
+    color: var(--countdown-value-color); /* MODIFIED */
+    font-weight: bold; 
+}
+
+.countdown-part .label {
+    font-size: 0.6em; 
+    line-height: 1;
+    color: var(--countdown-label-color); /* MODIFIED */
+    text-transform: uppercase;
+    margin-top: 3px;
+}
+
+.separator {
+    font-size: 1.6em; 
+    color: var(--countdown-value-color); /* MODIFIED */
+    align-self: center; 
+    padding: 0 2px; 
+    padding-bottom: 0.30em; 
+}
+
+/* Animation für Zahlenänderung */
+.value.tick {
+    animation: tickAnimation 0.45s cubic-bezier(0.68, -0.55, 0.27, 1.55); 
+}
+
+@keyframes tickAnimation {
+    0%   { transform: scale(1) translateY(0); opacity: 1; }
+    50%  { transform: scale(1.15) translateY(-4px); opacity: 0.7; }
+    100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+/* Responsive Anpassungen für den Countdown auf kleineren Bildschirmen */
+@media (max-width: 576px) { 
+    .countdown-box {
+        font-size: 1.1em; 
+        padding: 15px 10px;
+    }
+    .countdown-part {
+        min-width: 38px; 
+        margin: 0 1px;
+    }
+    .countdown-part .value {
+        font-size: 1.7em;
+    }
+    .countdown-part .label {
+        font-size: 0.55em;
+    }
+    .separator {
+        font-size: 1.3em;
+        padding-bottom: 0.25em;
+    }
+}
+
+/* Style für den Header, falls noch nicht vorhanden oder spezifischer benötigt */
+header.color_primary {
+    width: 100%;
+    height: auto;
+}
+
+/* Styles für die einleitenden Überschriften */
+.page-intro-headings {
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
+}
+.page-intro-line1 {
+    text-align: center;
+    font-size: x-large;
+    display: block; 
+}
+
+.page-intro-line2 {
+    text-align: center;
+    font-size: xxx-large;
+    display: block; 
+}
+
+
+#schulvergleichBox {
+    border-radius: 20px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative; 
+    padding-bottom: 20px;
+    /* justify-content-center ist bereits als Bootstrap-Klasse vorhanden */
+}
+
+.schulvergleich-title {
+    text-align: center;
+    font-size: x-large;
+    display: block; 
+    margin-bottom: 10px; 
+}
+
+#tlsLogo {
+    margin-right: 5%;
+    margin-bottom: 2%; 
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.vsBlock {
+    margin-right: 5%;
+    /* Die vertikale Ausrichtung wird durch align-items-center im Elterndiv behandelt */
+}
+
+#fvssLogo {
+    cursor: pointer;
+    width: 100px; /* Explicit width to prevent stretching */
+    flex-shrink: 0; /* Prevent the element from shrinking */
+}
+
+/* Responsive Anpassungen für kleinere Bildschirme */
+@media (max-width: 767px) {
+    #turnierInfos {
+        padding: 30px 15px;
+    }
+
+    #turnierInfos .section-title {
+        font-size: 2.2em;
+    }
+
+    #turnierInfos .column-title {
+        font-size: 1.8em;
+        text-align: center; 
+    }
+    
+    #turnierInfos .info-text {
+        font-size: 1.1em;
+    }
+
+    .countdown-box {
+        font-size: 1.2em;
+        padding: 20px;
+        margin-top: 10px; 
+    }
+
+    #turnierInfos .col-md-6 {
+        margin-bottom: 20px; 
+    }
+    #turnierInfos .col-md-6:last-child {
+        margin-bottom: 0;
+    }
+}
+
+/* Die Teams Section */
+#teamsSection {
+    border-radius: 20px;
+    max-width: 1000px; 
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    padding: 40px 20px;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.team-label {
+    font-size: 1.7em; 
+    color: var(--text-color); /* MODIFIED */
+    text-align: center;
+    margin-bottom: 20px; 
+}
+
+.shapes-row {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    gap: 25px; 
+    flex-wrap: wrap; 
+}
+
+.team-shape-placeholder {
+    width: 100px;  
+    height: 100px; 
+    background-color: transparent; /* Transparent statt weiß, damit nur die Logos sichtbar sind */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: visible; /* Damit Text über den Rand hinausgehen kann */
+    position: relative; 
+    margin-bottom: 30px; /* Erhöhter Abstand für den Namen unter dem Diamanten */
+}
+
+.diamond-placeholder-shape {
+    border-radius: 25px; 
+    transform: rotateZ(45deg);
+    overflow: hidden;
+    position: relative; 
+    background-color: transparent; /* Transparent statt weiß, damit nur das Logo sichtbar ist */
+}
+
+/* Wichtig: Inhalt von Diamanten zurückdrehen */
+.diamond-placeholder-shape .team-shape-content {
+    transform: rotateZ(-45deg);
+    width: 141.42%; /* √2 * 100% für die Diagonale des Quadrats */
+    height: 141.42%;
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-size: 120% !important; /* Stark vergrößert, um den Diamanten komplett zu füllen */
+    background-position: center center !important; /* Zentriert */
+}
+
+.square-placeholder-shape {
+    border-radius: 25px; 
+    overflow: hidden;
+    background-color: transparent; /* Transparent statt weiß, damit nur das Logo sichtbar ist */
+}
+
+/* Spezielle Anpassung für die quadratischen Platzhalter */
+.square-placeholder-shape .team-shape-content {
+    background-size: 120%; /* Stark vergrößert für die Quadrate, um sie komplett zu füllen */
+    background-position: center center; /* Zentriert */
+}
+
+/* Wrapper für Bild und Text innerhalb des Platzhalters */
+.team-shape-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Zentriert den Inhalt vertikal */
+    align-items: center;
+    text-align: center;
+    width: 100%; 
+    height: 100%; 
+    padding: 0; /* Kein Padding, um das Bild komplett anzuzeigen */
+    box-sizing: border-box;
+    position: relative;     /* Hintergrundbild-Eigenschaften */
+    background-size: 140%; /* Stark vergrößert, um die Form komplett zu füllen */
+    background-position: center center; 
+    background-repeat: no-repeat;
+    background-color: transparent; /* Kein Hintergrund, nur das Bild soll sichtbar sein */
+}
+
+.team-name-display {
+    font-size: 0.85em; /* Etwas größere Schriftgröße */
+    color: var(--team-name-on-shape-text); /* MODIFIED */
+    font-family: 'Jersey 10', sans-serif;
+    line-height: 1.2; /* Erhöhte Zeilenhöhe für bessere Lesbarkeit */
+    display: block;
+    word-break: break-word; 
+    overflow: visible; /* Ermöglicht Sichtbarkeit außerhalb des Containers */
+    background-color: rgba(40, 32, 32, 0.85); /* Leicht dunklerer Hintergrund für bessere Lesbarkeit */
+    padding: 4px 6px; /* Etwas mehr Padding */
+    border-radius: 5px;
+    margin-top: 8px; /* Abstand zum Diamanten */
+    width: 100%; /* Volle Breite des Containers */
+    box-sizing: border-box;
+    white-space: normal; /* Erzwingt Zeilenumbrüche bei Bedarf */
+    text-align: center; /* Zentriert den Text */
+    z-index: 10; /* Stellt sicher, dass der Text oben liegt */
+    position: absolute; /* Positioniert den Namen absolut */
+    bottom: -25px; /* Platziert den Namen unter dem Diamanten */
+    left: 0; /* Ausrichtung links */
+    right: 0; /* Ausrichtung rechts - zusammen mit left: 0 wird der Text zentriert */
+    max-width: 100%; /* Maximale Breite */
+}
+
+/* Responsive Anpassungen für den Teams-Abschnitt */
+@media (max-width: 767px) {
+    #teamsSection {
+        padding: 30px 15px;
+    }
+    .team-label {
+        font-size: 1.5em;
+    }
+    .team-shape-placeholder {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 35px; /* Mehr Platz für Teamnamen auf mobilen Geräten */
+    }
+    .shapes-row {
+        gap: 30px; /* Mehr Abstand zwischen Teams auf mobilen Geräten */
+    }
+    .team-name-display {
+        font-size: 0.75em; /* Kleinere Schrift auf mobilen Geräten */
+        padding: 3px 4px;
+        bottom: -28px; /* Etwas tiefer auf mobilen Geräten */
+    }    /* Anpassungen für Bilder auf mobilen Geräten */
+    .diamond-placeholder-shape .team-shape-content {
+        background-size: 160% !important; /* Stark vergrößertes Bild für die Diamanten auf Mobilgeräten */
+    }
+    .square-placeholder-shape .team-shape-content {
+        background-size: 135% !important; /* Stark vergrößertes Bild für die Quadrate auf Mobilgeräten */
+    }
+}
+
+@media (max-width: 576px) {
+    .team-shape-placeholder {
+        width: 65px;
+        height: 65px;
+        margin-bottom: 30px; /* Leicht reduzierter Abstand für sehr kleine Bildschirme */
+    }
+    .shapes-row {
+        gap: 25px; /* Leicht reduzierter Abstand für sehr kleine Bildschirme */
+    }
+    .team-label {
+        font-size: 1.3em;
+    }
+    .team-name-display {
+        font-size: 0.7em; /* Noch kleinere Schrift auf sehr kleinen Geräten */
+        padding: 2px 3px;
+        bottom: -25px;
+    }    /* Anpassungen für Bilder auf sehr kleinen Geräten */
+    .diamond-placeholder-shape .team-shape-content,
+    .square-placeholder-shape .team-shape-content {
+        background-size: 180% !important; /* Stark vergrößerte Bilder für sehr kleine Geräte */
+    }
+}
+
+/* Team Info Modal Styles */
+.custom-modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1050; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.6); 
+
+    /* Animation für das Modal selbst (Fade-in des Overlays) */
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+    pointer-events: none;
+}
+
+.custom-modal.visible {
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.custom-modal-content {
+    background-color: var(--modal-content-bg); /* MODIFIED */
+    color: var(--text-color); /* MODIFIED */
+    margin: auto;
+    padding: 25px 30px;
+    border: 2px solid var(--modal-border-color); /* MODIFIED */
+    border-radius: 15px;
+    width: 90%;
+    max-width: 550px; 
+    box-shadow: 0 5px 20px rgba(0,0,0,0.7);
+    position: relative; 
+    font-family: 'Jersey 10', sans-serif;
+
+    /* Animation für den Inhalt (Slide-in / Scale-up) */
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out; 
+    opacity: 0; 
+}
+
+.custom-modal.visible .custom-modal-content {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+}
+
+.custom-modal-close-button {
+    color: var(--modal-close-btn-color); /* MODIFIED */
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 32px;
+    font-weight: bold;
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.custom-modal-close-button:hover,
+.custom-modal-close-button:focus {
+    color: var(--modal-close-btn-hover-color); /* MODIFIED */
+    text-decoration: none;
+}
+
+#teamModalName {
+    text-align: center;
+    font-size: 2.2em;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: var(--text-color); /* MODIFIED */
+    border-bottom: 1px solid var(--border-subtle); /* MODIFIED */
+    padding-bottom: 15px;
+}
+
+#teamModalImageContainer {
+    text-align: center;
+    margin-bottom: 20px;
+    min-height: 100px; 
+}
+
+#teamModalImage {
+    max-width: 180px;  
+    max-height: 180px; 
+    object-fit: contain;
+    border-radius: 10px; 
+    background-color: var(--border-subtle); /* MODIFIED - subtle background for image area */
+}
+
+#teamModalDescription {
+    font-size: 1.15em;
+    line-height: 1.7;
+    color: var(--text-muted-color); /* MODIFIED */
+    text-align: left;
+}
+
+/* Responsive Anpassungen für das Team-Modal */
+@media (max-width: 576px) {
+    .custom-modal-content {
+        padding: 20px 20px;
+        width: 95%;
+        padding: 15px;
+    }
+    #teamModalName {
+        font-size: 1.8em;
+        font-size: 1.5em;
+    }
+    #teamModalImage {
+        max-width: 140px; 
+        max-height: 140px;
+    }
+    #teamModalDescription {
+        font-size: 1em;
+    }
+}
+
+/* Style for event ended message, if needed */
+.event-ended-message {
+    color: var(--event-ended-message-color); /* Use a variable */
+    /* Add other styles as needed */
+    text-align: center;
+    padding: 20px;
+    font-size: 1.2em;
+    color: var(--event-ended-message-color);
+}
+
+/* Theme toggle button specific style if needed, though Bootstrap classes are used */
